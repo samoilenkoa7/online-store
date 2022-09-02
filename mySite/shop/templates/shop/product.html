@@ -1,0 +1,68 @@
+{% extends 'shop/product_layout.html' %}
+
+{% block product %}
+        <section class="py-5">
+            <div class="container px-4 px-lg-5 my-5 bg-white">
+                <div class="row gx-4 gx-lg-5 align-items-center">
+                    <div class="col-md-6">
+                        <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                          <div class="carousel-inner">
+                            <div class="carousel-item active" id="product-box">
+                              <img src="{{ account.title_image.url }}" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" id="product-box">
+                              <img src="{{ account.image_1.url }}" class="d-block w-100" alt="...">
+                            </div>
+                            <div class="carousel-item" id="product-box">
+                              <img src="{{ account.image_2.url }}" class="d-block w-100" alt="...">
+                            </div>
+                          </div>
+                          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                          </button>
+                          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                          </button>
+                        </div>
+                    </div>
+                    <div class="col-md-6" id="product-box">
+                        <div class="small mb-1">Account id: {{account.id}}</div>
+                        <h1 class="display-9 fw-bolder">{{ account.title }}</h1>
+                        <div class="fs-5 mb-5">
+                            <span class="text-decoration-line-through">$30</span>
+                            <span style="color: #eb367f">${{ account.acc_price }}</span>
+                        </div>
+                        <p class="fs-6">{{ account.description }}</p>
+                        <div class="d-flex justify-content-center">
+                        <table class="table">
+                            <tr>
+                                <th>Level</th>
+                                <th>Outfits</th>
+                                <th>Emotions</th>
+                                <th>Vbucks</th>
+                                <th>Gliders</th>
+                            </tr>
+                            <tr>
+                                <td>{{ account.level }}</td>
+                                <td>{{ account.outfits }}</td>
+                                <td>{{ account.emotions }}</td>
+                                <td>{{ account.vbucks }}</td>
+                                <td>{{ account.gliders_amount }}</td>
+                            </tr>
+                        </table>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <a href="{% url 'order' pk=account.id %}">
+                            <button class="btn btn-outline-danger flex-shrink-0" type="button">
+                                <i class="bi-cart-fill me-1"></i>
+                                Buy
+                            </button>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        {% endblock %}

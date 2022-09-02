@@ -1,0 +1,93 @@
+{% extends 'pages/index.html' %}
+{% load static %}
+
+{% block links %}
+            <li><a class="nav-link scrollto" href="{% url 'shop' %}">Store</a></li>
+            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#about">About us</a></li>
+            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#faq">FAQ</a></li>
+            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#team">Reviews</a></li>
+            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#contact">Contact</a></li>
+{% endblock %}
+
+{% block hero %}
+<h3>Shop now and get <strong>DISCOUNTS</strong></h3>
+      <h1>Best accounts</h1>
+      <h2>On our website you will find best prices</h2>
+      <a href="{% url 'shop' %}" class="btn-get-started scrollto">Buy</a>
+{% endblock %}
+
+
+{% block content %}
+
+<section class="main-content">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                            <div class="container bg-dark">
+                                <nav class="navbar navbar-dark navbar-expand-sm">
+                                    <a href="#" class="navbar-brand">Brand</a>
+                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuItems" aria-controls="menuItems" aria-expanded="false" aria-label="Toggle Navigation">
+                                    <span class="navbar-toggler-icon"></span>
+                                    </button>
+                                    <div class="collapse navbar-collapse" id="menuItems">
+                                        <ul class="navbar-nav">
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">About</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">Pricing</a>
+                                            </li>
+                                            <li class="nav-item">
+                                                <a href="#" class="nav-link">Contact</a>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+
+
+            </div>
+            <div class="row">
+                                    {% for item in file %}
+                                    <div class="col-lg-4 col-md-6 col-sm-12">
+                                    <div class="card text-black">
+                                      <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                                      <img src="{{ item.title_image.url }}"
+                                        class="card-img-top" alt="{{ item.title }}" />
+                                      <div class="card-body">
+                                        <div class="text-center">
+                                          <h5 class="card-title">{{ item.title }}</h5>
+                                          <p class="text-muted mb-4">Best Fortnite account</p>
+                                        </div>
+                                        <div>
+                                          <div class="d-flex justify-content-between">
+                                            <span>Level:</span><span>{{ item.level }}</span>
+                                          </div>
+                                          <div class="d-flex justify-content-between">
+                                            <span>Outfits:</span><span>{{ item.outfits }}</span>
+                                          </div>
+                                          <div class="d-flex justify-content-between">
+                                            <span>VBucks:</span><span>{{ item.vbucks }}</span>
+                                          </div>
+                                        </div>
+                                        <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                                          <span>Price</span><span>{{ item.acc_price }}</span>
+                                        </div>
+                                      </div>
+                                    <div class="card-body">
+                                            <a href="{% url 'product' item.id %}" class="btn btn-primary">BUY</a>
+                                    </div>
+                                    </div>
+                                </div>
+                                    {% endfor %}
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}
