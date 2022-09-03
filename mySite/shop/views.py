@@ -1,15 +1,22 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .models import Account
-from django.views.generic import DetailView, CreateView
-from .forms import EmailtoBuyForm
+from django.views.generic import DetailView, CreateView, ListView
+from .forms import EmailtoBuyForm, SortForm
 from .telegramm import send_msg
 
 
 def shop(request):
-    file = Account.objects.all()
+    sorting = SortForm(request.POST)
+    needed_sort = ''
+    if sorting.is_valid():
+        needed_sort = sorting.cleaned_data['sort_form']
+        file = Account.objects.all().order_by(needed_sort)
+    else:
+        file = Account.objects.all()
     data = {
         'file': file,
+        'form': sorting,
     }
     return render(request, 'shop/shop.html', data)
 

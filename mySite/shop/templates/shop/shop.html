@@ -23,22 +23,16 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                            <div class="container bg-dark">
+                            <div class="container bg-light justify-content-center">
                                 <nav class="navbar navbar-dark navbar-expand-sm">
-                                    <a href="#" class="navbar-brand">Brand</a>
-                                    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuItems" aria-controls="menuItems" aria-expanded="false" aria-label="Toggle Navigation">
-                                    <span class="navbar-toggler-icon"></span>
-                                    </button>
-                                    <div class="collapse navbar-collapse" id="menuItems">
                                         <ul class="navbar-nav">
                                             <li class="nav-item">
-                                                <a href="#" class="nav-link">About</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">Pricing</a>
-                                            </li>
-                                            <li class="nav-item">
-                                                <a href="#" class="nav-link">Contact</a>
+                                                <form action="" method="post" class="form-control-sm">
+                                                    {% csrf_token %}
+                                                    <strong>{{ form.as_p }}</strong>
+                                                    <button type="submit" class="btn btn-outline-danger">Sort</button>
+                                                </form>
+
                                             </li>
                                         </ul>
                                     </div>

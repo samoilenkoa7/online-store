@@ -1,5 +1,5 @@
 from django import forms
-from .models import UserOrder
+from .models import UserOrder, Account
 
 
 class EmailtoBuyForm(forms.ModelForm):
@@ -21,3 +21,12 @@ class EmailtoBuyForm(forms.ModelForm):
                 'placeholder': 'Account id',
             }),
         }
+
+
+class SortForm(forms.Form):
+
+    choices = (
+        ('-acc_price', 'High to low'),
+        ('acc_price', 'Low to high'),
+    )
+    sort_form = forms.TypedChoiceField(choices=choices)
