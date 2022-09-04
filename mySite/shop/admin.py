@@ -7,6 +7,7 @@ class ImageInline(admin.TabularInline):
 
 
 class AdminAccountView(admin.ModelAdmin):
+    list_display = ('title', 'level', 'outfits', 'gliders_amount', 'acc_price')
     list_filter = ['title', 'level', 'outfits']
     inlines = [ImageInline]
 

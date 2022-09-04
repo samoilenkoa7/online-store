@@ -16,9 +16,9 @@ class Account(models.Model):
         ('No email', 'No email'),
         ('Others', 'Other')
     )
-    title_image = models.ImageField()
-    image_1 = models.ImageField()
-    image_2 = models.ImageField()
+    title_image = models.ImageField(upload_to='shop/account_images/%Y/%m/%d')
+    image_1 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d')
+    image_2 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d')
     image_3 = models.ImageField(blank=True)
     title = models.CharField(unique=True, max_length=250, verbose_name='Short description')
     level = models.IntegerField()
