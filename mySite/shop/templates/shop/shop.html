@@ -2,18 +2,18 @@
 {% load static %}
 
 {% block links %}
-            <li><a class="nav-link scrollto" href="{% url 'shop' %}">Store</a></li>
-            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#about">About us</a></li>
-            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#faq">FAQ</a></li>
-            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#team">Reviews</a></li>
-            <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#contact">Contact</a></li>
+<li><a class="nav-link scrollto" href="{% url 'shop' %}">Store</a></li>
+<li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#about">About us</a></li>
+<li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#faq">FAQ</a></li>
+<li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#team">Reviews</a></li>
+<li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#contact">Contact</a></li>
 {% endblock %}
 
 {% block hero %}
 <h3>Shop now and get <strong>DISCOUNTS</strong></h3>
-      <h1>Best accounts</h1>
-      <h2>On our website you will find best prices</h2>
-      <a href="{% url 'shop' %}" class="btn-get-started scrollto">Buy</a>
+<h1>Best accounts</h1>
+<h2>On our website you will find best prices</h2>
+<a href="{% url 'shop' %}" class="btn-get-started scrollto">Buy</a>
 {% endblock %}
 
 
@@ -23,65 +23,62 @@
     <div class="container">
         <div class="row">
             <div class="col-lg-12">
-                            <div class="container bg-light justify-content-center">
-                                <nav class="navbar navbar-dark navbar-expand-sm">
-                                        <ul class="navbar-nav">
-                                            <li class="nav-item">
-                                                <form action="" method="post" class="form-control-sm">
-                                                    {% csrf_token %}
-                                                    <strong>{{ form.as_p }}</strong>
-                                                    <button type="submit" class="btn btn-outline-danger">Sort</button>
-                                                </form>
+                <div class="container bg-light justify-content-center">
+                    <nav class="navbar navbar-dark navbar-expand-sm">
+                        <ul class="navbar-nav">
+                            <li class="nav-item">
+                                <form action="" method="post" class="form-control-sm">
+                                    {% csrf_token %}
+                                    <strong>{{ form.as_p }}</strong>
+                                    <button type="submit" class="btn btn-outline-danger">Sort</button>
+                                </form>
 
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </nav>
+                            </li>
+                        </ul>
+                </div>
+                </nav>
+            </div>
+
+
+        </div>
+        <div class="row">
+            {% for item in file %}
+            <div class="col-lg-4 col-md-6 col-sm-12">
+                <div class="card text-black mb-3">
+                    <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                    <img src="{{ item.title_image.url }}"
+                         class="card-img-top" alt="{{ item.title }}"/>
+                    <div class="card-body">
+                        <div class="text-center">
+                            <h5 class="card-title">{{ item.title }}</h5>
+                            <p class="text-muted mb-4">{% if item.is_new %} <strong>Hot account</strong> {% endif %}</p>
+                        </div>
+                        <div>
+                            <div class="d-flex justify-content-between">
+                                <span>Level:</span><span>{{ item.level }}</span>
                             </div>
-
-
+                            <div class="d-flex justify-content-between">
+                                <span>Outfits:</span><span>{{ item.outfits }}</span>
+                            </div>
+                            <div class="d-flex justify-content-between">
+                                <span>VBucks:</span><span>{{ item.vbucks }}</span>
+                            </div>
+                        </div>
+                        <div class="d-flex justify-content-between total font-weight-bold mt-4">
+                            <span>Price</span><span>{{ item.acc_price }}</span>
+                        </div>
+                    </div>
+                    <div class="card-body">
+                        <a href="{% url 'product' item.id %}" class="btn btn-primary">BUY</a>
+                    </div>
+                </div>
             </div>
-            <div class="row">
-                                    {% for item in file %}
-                                    <div class="col-lg-4 col-md-6 col-sm-12">
-                                    <div class="card text-black">
-                                      <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
-                                      <img src="{{ item.title_image.url }}"
-                                        class="card-img-top" alt="{{ item.title }}" />
-                                      <div class="card-body">
-                                        <div class="text-center">
-                                          <h5 class="card-title">{{ item.title }}</h5>
-                                          <p class="text-muted mb-4">Best Fortnite account</p>
-                                        </div>
-                                        <div>
-                                          <div class="d-flex justify-content-between">
-                                            <span>Level:</span><span>{{ item.level }}</span>
-                                          </div>
-                                          <div class="d-flex justify-content-between">
-                                            <span>Outfits:</span><span>{{ item.outfits }}</span>
-                                          </div>
-                                          <div class="d-flex justify-content-between">
-                                            <span>VBucks:</span><span>{{ item.vbucks }}</span>
-                                          </div>
-                                        </div>
-                                        <div class="d-flex justify-content-between total font-weight-bold mt-4">
-                                          <span>Price</span><span>{{ item.acc_price }}</span>
-                                        </div>
-                                      </div>
-                                    <div class="card-body">
-                                            <a href="{% url 'product' item.id %}" class="btn btn-primary">BUY</a>
-                                    </div>
-                                    </div>
-                                </div>
-                                    {% endfor %}
+            {% endfor %}
 
-            </div>
         </div>
     </div>
+    </div>
 </section>
-
-
-
 
 
 {% endblock %}

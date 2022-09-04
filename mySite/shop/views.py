@@ -1,7 +1,7 @@
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from .models import Account
-from django.views.generic import DetailView, CreateView, ListView
+from django.views.generic import DetailView, CreateView
 from .forms import EmailtoBuyForm, SortForm
 from .telegramm import send_msg
 

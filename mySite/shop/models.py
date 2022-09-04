@@ -1,5 +1,6 @@
 from django.db import models
-from datetime import datetime
+from datetime import datetime, timedelta
+from django.utils import timezone
 
 
 def time_now():
@@ -35,13 +36,16 @@ class Account(models.Model):
     description = models.TextField(verbose_name='Full account description')
     acc_raiting = models.CharField(max_length=20, default='5*')
     acc_price = models.IntegerField(default=10)
-    date_post = models.DateField(default=time_now())
+    date_post = models.DateTimeField(default=time_now())
 
-    class Meta:
-        ordering = ('-outfits',)
+    def is_new(self):
+        return self.date_post >= (timezone.now() - timedelta(days=7))
 
     def __str__(self):
         return self.title
+
+    class Meta:
+        ordering = ('-outfits',)
 
 
 class PostsImages(models.Model):
