@@ -33,7 +33,7 @@
                 <div class="small mb-1">Account id: {{account.id}}</div>
                 <h1 class="display-9 fw-bolder">{{ account.title }}</h1>
                 <div class="fs-5 mb-5">
-                    <span class="text-decoration-line-through">$30</span>
+                    <span class="text-decoration-line-through">${{ account.acc_price|add:'10' }}</span>
                     <span style="color: #eb367f">${{ account.acc_price }}</span>
                 </div>
                 <p class="fs-6">{{ account.description }}</p>
