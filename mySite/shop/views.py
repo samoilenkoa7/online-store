@@ -28,7 +28,8 @@ class ProductView(DetailView):
 
 
 class OrderAccount(CreateView):
-    model = Account
+    model = Account.objects.all()
+    context_object_name = 'account'
     form_class = EmailtoBuyForm
     template_name = 'shop/order.html'
     success_url = reverse_lazy('success')

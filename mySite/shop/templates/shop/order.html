@@ -4,6 +4,7 @@
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-lg-9 bg-white" id="order-box" style="min-height: 400px">
+            {{ account.id }}
             <form method="post" class="order-complete">
                 {% csrf_token %}
                 {{ form.as_p }}
