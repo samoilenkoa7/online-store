@@ -56,7 +56,15 @@
                     </table>
                 </div>
                 <div class="d-flex justify-content-end">
-                    <a href="{% url 'order' account.id %}">
+                    <a href="{{ account.get_absolute_url }}">
+                        <button class="btn btn-outline-danger flex-shrink-0" type="button">
+                            <i class="bi-cart-fill me-1"></i>
+                            Buy
+                        </button>
+                    </a>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <a href="{{ next_account }}">
                         <button class="btn btn-outline-danger flex-shrink-0" type="button">
                             <i class="bi-cart-fill me-1"></i>
                             Buy

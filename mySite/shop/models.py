@@ -1,6 +1,7 @@
 from django.db import models
 from datetime import datetime, timedelta
 from django.utils import timezone
+from django.urls import reverse_lazy
 
 
 def time_now():
@@ -29,7 +30,7 @@ class Account(models.Model):
     gliders_amount = models.IntegerField()
     save_world = models.CharField(choices=YES_NO_CHOICES, max_length=250)
     hot_og = models.CharField(max_length=250)
-    platform = models.CharField(max_length=250, verbose_name='PC, PS, Xbox...')
+    platform = models.ForeignKey('AccountPlatform', on_delete=models.CASCADE)
     mail = models.CharField(choices=MAIL_CHOICES, max_length=250, verbose_name='Type of email on account')
     outfits = models.IntegerField()
     emotions = models.IntegerField()
@@ -44,20 +45,21 @@ class Account(models.Model):
     def __str__(self):
         return self.title
 
+    def get_absolute_url(self):
+        return reverse_lazy('order', kwargs={'account_id': self.pk})
+
     class Meta:
         ordering = ('-outfits',)
 
 
-class PostsImages(models.Model):
-    images = models.ImageField(upload_to='shop/account_images/', blank=True)
-    account = models.ForeignKey(Account, related_name='images', on_delete=models.CASCADE)
-
-    class Meta:
-        verbose_name = 'Image'
-        verbose_name_plural = 'Images'
+class AccountPlatform(models.Model):
+    platform_name = models.CharField(max_length=50)
 
     def __str__(self):
-        return str(self.images)
+        return self.platform_name
+
+    def get_absolute_url(self):
+        return reverse_lazy('platform', kwargs={'accountplatform_id': self.pk})
 
 
 class UserOrder(models.Model):

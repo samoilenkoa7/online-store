@@ -1,0 +1,14 @@
+{% load shop_tags %}
+<div class="dropdown">
+    <button class="btn btn-secondary dropdown-toggle" type="button"
+            data-bs-toggle="dropdown" aria-expanded="false">
+        Choose platform
+    </button>
+    <ul class="dropdown-menu">
+        {% for item in platforms %}
+        <li><a class="dropdown-item" href="{{ item.get_absolute_url }}">
+            {{ item.platform_name }}
+            <span class="badge bg-primary rounded-pill">{{ item.cnt }}</span></a></li>
+        {% endfor %}
+    </ul>
+</div>
