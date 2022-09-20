@@ -38,6 +38,7 @@ class Account(models.Model):
     acc_raiting = models.CharField(max_length=20, default='5*')
     acc_price = models.IntegerField(default=10)
     date_post = models.DateTimeField(default=time_now())
+    views = models.IntegerField(default=0)
 
     def is_new(self):
         return self.date_post >= (timezone.now() - timedelta(days=7))

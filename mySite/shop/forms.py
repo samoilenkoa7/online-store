@@ -24,11 +24,10 @@ class EmailtoBuyForm(forms.ModelForm):
 
 
 class SortForm(forms.Form):
-
     choices = (
         ('-acc_price', 'High to low'),
         ('acc_price', 'Low to high'),
     )
     sort_form = forms.TypedChoiceField(choices=choices, widget=forms.Select(attrs={
         'class': 'form-control',
-        }))
+    }))
