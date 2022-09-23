@@ -16,33 +16,25 @@
     <title>{% block title %} {% endblock %}</title>
 </head>
 <body>
-<header id="header" class="fixed-top">
-    <div class="container d-flex align-items-center justify-content-between">
+{% include 'templatetags/_header.html' %}
 
-        <h1 class="logo"><a href="{% url 'index' %}">FORT-SHOP</a></h1>
-        <!-- Uncomment below if you prefer to use an image logo -->
-        <!-- <a href="{% url 'index' %}" class="logo"><img src="{% static 'pages/image/logo.png' %}" alt="" class="img-fluid"></a> -->
-
-        <nav id="navbar" class="navbar">
-            <ul>
-                {% block links %}
-                <li><a class="nav-link scrollto" href="{% url 'shop' %}">Store</a></li>
-                <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#about">About us</a></li>
-                <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#faq">FAQ</a></li>
-                <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#team">Reviews</a></li>
-                <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#contact">Contact</a></li>
-                {% endblock %}
-            </ul>
-
-            <i class="bi bi-list mobile-nav-toggle">
-            </i>
-        </nav><!-- .navbar -->
-    </div>
-</header><!-- End Header -->
 
 <!-- ======= Hero Section ======= -->
 <section id="hero-product" style="background-image: url({% static 'pages/image/bg.jpeg' %})">
     <div class="hero-container-product">
+        {% if messages %}
+        {% for message in messages %}
+        {% if message.tags == 'error' %}
+        <div class="alert alert-danger" role="alert">
+            {{ message }}
+        </div>
+        {% else %}
+        <div class="alert alert-{{ message.tags }}">
+            {{ message }}
+        </div>
+        {% endif %}
+        {% endfor %}
+        {% endif %}
         {% block product %}
 
         {% endblock %}

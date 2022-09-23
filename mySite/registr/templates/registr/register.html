@@ -1,0 +1,17 @@
+{% extends 'pages/index.html' %}
+{% block hero %}
+
+<section class="py-5">
+    <div class="container px-4 px-lg-5 my-5 bg-white pt-3 pb-3">
+        <h2>Registration</h2>
+        <form method="post" class="form-control">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <div class="d-grid gap-2">
+                <button class="btn btn-primary mb-3" type="submit">Register</button>
+            </div>
+        </form>
+    </div>
+</section>
+
+{% endblock %}

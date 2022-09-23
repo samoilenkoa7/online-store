@@ -1,14 +1,26 @@
+from django import forms
 from django.contrib import admin
 from django.utils.safestring import mark_safe
 from .models import Account, AccountPlatform, UserOrder
+from ckeditor_uploader.widgets import CKEditorUploadingWidget
+
+
+class AccountAdminForm(forms.ModelForm):
+    description = forms.CharField(widget=CKEditorUploadingWidget())
+
+    class Meta:
+        model = Account
+        fields = '__all__'
 
 
 class AdminAccountView(admin.ModelAdmin):
+    form = AccountAdminForm
     list_display = ('get_title_image', 'title', 'level', 'outfits', 'gliders_amount', 'acc_price', 'platform', 'views')
     list_filter = ['title', 'level', 'outfits', 'views']
     list_editable = ('platform', 'acc_price')
     fields = (
-        'title_image', 'get_title_image', 'image_1', 'image_2', 'image_3', 'title', 'level', 'outfits', 'gliders_amount', 'acc_price', 'platform', 'views')
+        'title_image', 'get_title_image', 'image_1', 'image_2', 'image_3', 'title', 'description', 'level', 'outfits',
+        'gliders_amount', 'acc_price', 'platform', 'views')
     readonly_fields = ('get_title_image', 'views')
     save_on_top = True
 

@@ -29,6 +29,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+    'ckeditor',
+    'ckeditor_uploader',
     'grappelli',
     'pages.apps.PagesConfig',
     'django.contrib.admin',
@@ -38,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'shop.apps.ShopConfig',
-    'debug_toolbar'
+    'registr.apps.RegistrConfig',
+    'debug_toolbar',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +135,12 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 INTERNAL_IPS = [
     "127.0.0.1",
 ]
+
+EMAIL_HOST = 'smtp.ukr.net'
+EMAIL_PORT = 465  # 2525
+EMAIL_HOST_USER = 'samoilenkoa7@ukr.net'
+EMAIL_HOST_PASSWORD = 'ywMKOmd58rUxsTL6'
+EMAIL_USE_TLS = False
+EMAIL_USE_SSL = True
+
+CKEDITOR_UPLOAD_PATH = "uploads/"

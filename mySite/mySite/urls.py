@@ -22,8 +22,10 @@ urlpatterns = [
     path('grappelli/', include('grappelli.urls')),
     path('__debug__/', include('debug_toolbar.urls')),
     path('admin/', admin.site.urls),
+    path('ckeditor/', include('ckeditor_uploader.urls')),
     path('', include('pages.urls')),
     path('shop', include('shop.urls')),
+    path('reg', include('registr.urls')),
 ]
 
 if settings.DEBUG:

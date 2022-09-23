@@ -30,8 +30,8 @@
                                     </li>
                                     <li>
                                         <div class="mb-5">
-                                        <strong class="fst-normal">Choose account platform</strong>
-                                        {% show_category %}
+                                            <strong class="fst-normal">Choose account platform</strong>
+                                            {% show_category %}
                                         </div>
                                     </li>
                                 </ul>
@@ -46,8 +46,13 @@
             <div class="col-lg-4 col-md-6 col-sm-12 mt-3">
                 <div class="card text-black mb-3">
                     <i class="fab fa-apple fa-lg pt-3 pb-1 px-3"></i>
+                    {% if item.title_image %}
                     <img src="{{ item.title_image.url }}"
                          class="card-img-top" alt="{{ item.title }}"/>
+                    {% else %}
+                    <img src="https://assets1.ignimgs.com/2018/03/06/fortnite---button-1520296499714.jpg"
+                         class="card-img-top" alt="{{ item.title }}"/>
+                    {% endif %}
                     <div class="card-body">
                         <div class="text-center">
                             <h5 class="card-title">{{ item.title }}</h5>
@@ -82,6 +87,6 @@
     </div>
     </div>
 </section>
-
+{% include 'templatetags/_pagination.html' %}
 
 {% endblock %}

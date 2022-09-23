@@ -14,6 +14,16 @@
                 <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#faq">FAQ</a></li>
                 <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#team">Reviews</a></li>
                 <li><a class="nav-link scrollto" href="http://127.0.0.1:8000/#contact">Contact</a></li>
+                {% if request.user.is_authenticated %}
+                <li><a class="nav-link scrollto" href="{% url 'add-account' %}">Add Account</a></li>
+                {% endif %}
+                {% if request.user.is_authenticated %}
+                <li>Welcome, dear {{ user.username }}</li>
+                <li><a href="{% url 'logout' %}" class="nav-link"><i class="bi bi-person-x"></i>Logout</a></li>
+                {% else %}
+                <li><a class="nav-link" href="{% url 'register' %}"><i class="bi bi-card-checklist"></i> Register</a></li>
+                <li><a class="nav-link" href="{% url 'login' %}"><i class="bi bi-file-person"></i> Login</a></li>
+                {% endif %}
                 {% endblock %}
             </ul>
 

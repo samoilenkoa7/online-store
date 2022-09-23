@@ -5,16 +5,12 @@ from .models import UserOrder, Account
 class EmailtoBuyForm(forms.ModelForm):
     class Meta:
         model = UserOrder
-        fields = ['name', 'email', 'account_id']
+        fields = ['name', 'account_id']
 
         widgets = {
             'name': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Your name',
-            }),
-            'email': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Your email',
             }),
             'account_id': forms.TextInput(attrs={
                 'class': 'form-control',
@@ -31,3 +27,11 @@ class SortForm(forms.Form):
     sort_form = forms.TypedChoiceField(choices=choices, widget=forms.Select(attrs={
         'class': 'form-control',
     }))
+
+
+class CreateAccount(forms.ModelForm):
+    class Meta:
+        model = Account
+        fields = ['title_image', 'image_1', 'image_2', 'title', 'level', 'full_acces', 'vbucks', 'bling_amount',
+                  'gliders_amount', 'save_world', 'hot_og', 'platform', 'mail', 'outfits', 'emotions', 'description',
+                  'acc_raiting', 'acc_price']

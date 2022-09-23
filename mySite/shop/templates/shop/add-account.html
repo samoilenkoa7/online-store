@@ -1,0 +1,19 @@
+{% extends 'shop/product_layout.html' %}
+
+{% block product %}
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-9 bg-white" id="order-box" style="min-height: 450px">
+            <form method="post" class="form-control order-complete">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button class="btn btn-outline-danger flex-shrink-0 mt-3" type="submit">
+                    <i class="bi-cart-fill me-1"></i>
+                    Create account
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

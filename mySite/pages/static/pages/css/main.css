@@ -1122,3 +1122,7 @@ strong {
 .order-complete {
     margin-top: 130px;
 }
+
+#page-color {
+    color: #eb367f;
+}

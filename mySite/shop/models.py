@@ -18,9 +18,9 @@ class Account(models.Model):
         ('No email', 'No email'),
         ('Others', 'Other')
     )
-    title_image = models.ImageField(upload_to='shop/account_images/%Y/%m/%d')
-    image_1 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d')
-    image_2 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d')
+    title_image = models.ImageField(upload_to='shop/account_images/%Y/%m/%d', blank=True)
+    image_1 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d', blank=True)
+    image_2 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d', blank=True)
     image_3 = models.ImageField(blank=True)
     title = models.CharField(unique=True, max_length=250, verbose_name='Short description')
     level = models.IntegerField()
@@ -37,7 +37,7 @@ class Account(models.Model):
     description = models.TextField(verbose_name='Full account description')
     acc_raiting = models.CharField(max_length=20, default='5*')
     acc_price = models.IntegerField(default=10)
-    date_post = models.DateTimeField(default=time_now())
+    date_post = models.DateTimeField(auto_now_add=True)
     views = models.IntegerField(default=0)
 
     def is_new(self):
