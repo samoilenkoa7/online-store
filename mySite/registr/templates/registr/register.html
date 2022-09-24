@@ -3,7 +3,11 @@
 
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5 bg-white pt-3 pb-3">
-        <h2>Registration</h2>
+        <h2>
+            <strong>
+                Registration
+            </strong>
+        </h2>
         <form method="post" class="form-control">
             {% csrf_token %}
             {{ form.as_p }}

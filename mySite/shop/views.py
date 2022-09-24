@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from django.db.models import F
 from django.views.generic import DetailView, CreateView
 from django.core.paginator import Paginator
+from django.contrib.auth.models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.core.mail import send_mail
 from django.contrib import messages
@@ -71,6 +72,9 @@ class AccountOrder(CreateView):
         return context
 
     def form_valid(self, form):
+        recipe = form.save(commit=False)
+        recipe.user = User.objects.get(id=self.request.user.id)
+        recipe.save()
         send_msg(text=str(form.cleaned_data))
         send_mail(f'Dear {self.request.user.username}, Account ID ' + form.cleaned_data["account_id"],
                   f'Your order with ID - {form.cleaned_data["account_id"]} is preparing', 'samoilenkoa7@ukr.net',

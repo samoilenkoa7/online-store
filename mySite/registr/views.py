@@ -1,9 +1,14 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout
 from django.contrib import messages
+from django.views.generic import ListView
+from django.apps import apps
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 
 from .forms import UserRegisterForm, UserLoginForm
 
+UserOrder = apps.get_model('shop', 'UserOrder')
 
 def register(request):
     if request.method == 'POST':
@@ -37,3 +42,17 @@ def user_login(request):
 def user_logout(request):
     logout(request)
     return redirect('login')
+
+
+class UserAccountView(LoginRequiredMixin, ListView):
+    template_name = 'registr/account.html'
+    context_object_name = 'userorder'
+    login_url = 'accountlogin/'
+
+    def get_queryset(self):
+        return UserOrder.objects.filter(user=self.request.user)
+
+    def get_context_data(self, *, object_list=None, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['user_name'] = self.request.user.username
+        return context

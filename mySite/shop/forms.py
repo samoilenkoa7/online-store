@@ -5,13 +5,9 @@ from .models import UserOrder, Account
 class EmailtoBuyForm(forms.ModelForm):
     class Meta:
         model = UserOrder
-        fields = ['name', 'account_id']
+        fields = ['account_id']
 
         widgets = {
-            'name': forms.TextInput(attrs={
-                'class': 'form-control',
-                'placeholder': 'Your name',
-            }),
             'account_id': forms.TextInput(attrs={
                 'class': 'form-control',
                 'placeholder': 'Account id',

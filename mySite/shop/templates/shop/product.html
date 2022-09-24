@@ -36,7 +36,7 @@
                     <span class="text-decoration-line-through">${{ account.acc_price|add:'10' }}</span>
                     <span style="color: #eb367f">${{ account.acc_price }}</span>
                 </div>
-                <p class="fs-6">{{ account.description }}</p>
+                <p class="fs-6">{{ account.description|safe }}</p>
                 <div class="d-flex justify-content-center">
                     <table class="table">
                         <tr>

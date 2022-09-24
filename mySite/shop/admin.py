@@ -19,8 +19,9 @@ class AdminAccountView(admin.ModelAdmin):
     list_filter = ['title', 'level', 'outfits', 'views']
     list_editable = ('platform', 'acc_price')
     fields = (
-        'title_image', 'get_title_image', 'image_1', 'image_2', 'image_3', 'title', 'description', 'level', 'outfits',
-        'gliders_amount', 'acc_price', 'platform', 'views')
+        'title_image', 'get_title_image', 'image_1', 'image_2', 'image_3', 'title', 'description', 'mail', 'hot_og',
+        'outfits', 'emotions', 'level', 'vbucks', 'gliders_amount', 'bling_amount', 'acc_price',
+        'acc_raiting', 'platform', 'views', 'full_acces')
     readonly_fields = ('get_title_image', 'views')
     save_on_top = True
 

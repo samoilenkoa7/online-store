@@ -1,5 +1,6 @@
 from django.db import models
 from datetime import datetime, timedelta
+from django.contrib.auth.models import User
 from django.utils import timezone
 from django.urls import reverse_lazy
 
@@ -64,9 +65,9 @@ class AccountPlatform(models.Model):
 
 
 class UserOrder(models.Model):
-    name = models.CharField(max_length=100, verbose_name='Your name')
-    email = models.CharField(max_length=100, verbose_name='Your email')
+    user = models.ForeignKey(User, on_delete=models.PROTECT)
     account_id = models.TextField(max_length=250, verbose_name='Account ID')
+    date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return str(self.account_id)
