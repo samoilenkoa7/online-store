@@ -6,7 +6,8 @@
     <div class="container px-4 px-lg-5 my-5 bg-white">
         <div class="row gx-4 gx-lg-5 align-items-center">
             <h1>Welcome dear {{ user_name }}</h1>
-            <ol class="list-group list-group-numbered">
+            <strong><h2>Here is the list of your orders</h2></strong>
+            <ol class="list-group list-group-numbered mb-3 mt-3">
                 {% for order in userorder %}
                 <li class="list-group-item d-flex justify-content-between align-items-start">
                     <div class="ms-2 me-auto">
