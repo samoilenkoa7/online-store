@@ -28,6 +28,6 @@ class SortForm(forms.Form):
 class CreateAccount(forms.ModelForm):
     class Meta:
         model = Account
-        fields = ['title_image', 'image_1', 'image_2', 'title', 'level', 'full_acces', 'vbucks', 'bling_amount',
+        fields = ['title_image', 'title', 'level', 'full_acces', 'vbucks', 'bling_amount',
                   'gliders_amount', 'save_world', 'hot_og', 'platform', 'mail', 'outfits', 'emotions', 'description',
                   'acc_raiting', 'acc_price']

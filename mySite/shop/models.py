@@ -20,9 +20,6 @@ class Account(models.Model):
         ('Others', 'Other')
     )
     title_image = models.ImageField(upload_to='shop/account_images/%Y/%m/%d', blank=True)
-    image_1 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d', blank=True)
-    image_2 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d', blank=True)
-    image_3 = models.ImageField(blank=True)
     title = models.CharField(unique=True, max_length=250, verbose_name='Short description')
     level = models.IntegerField()
     full_acces = models.CharField(choices=YES_NO_CHOICES, max_length=250)
@@ -52,6 +49,20 @@ class Account(models.Model):
 
     class Meta:
         ordering = ('-outfits',)
+
+
+class AccountPics(models.Model):
+    image_1 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d', blank=True)
+    image_2 = models.ImageField(upload_to='shop/account_images/%Y/%m/%d', blank=True)
+    image_3 = models.ImageField(blank=True)
+    acc = models.ForeignKey(Account, on_delete=models.CASCADE, related_name='images')
+
+    class Meta:
+        verbose_name = 'Image'
+        verbose_name_plural = 'Images'
+
+    def __str__(self):
+        return f'Pictures for account {self.acc}'
 
 
 class AccountPlatform(models.Model):

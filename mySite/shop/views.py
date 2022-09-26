@@ -8,7 +8,7 @@ from django.core.mail import send_mail
 from django.contrib import messages
 
 from .forms import EmailtoBuyForm, SortForm, CreateAccount
-from .models import Account, AccountPlatform
+from .models import Account, AccountPlatform, AccountPics
 from .telegramm import send_msg
 
 
@@ -51,6 +51,11 @@ class ProductView(DetailView):
     model = Account
     template_name = 'shop/product.html'
     context_object_name = 'account'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['images'] = AccountPics.objects.get(acc=self.kwargs['pk'])
+        return context
 
     def get_object(self, queryset=None):
         """this function allows
