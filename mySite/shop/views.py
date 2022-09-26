@@ -75,7 +75,7 @@ class AccountOrder(CreateView):
         recipe = form.save(commit=False)
         recipe.user = User.objects.get(id=self.request.user.id)
         recipe.save()
-        send_msg(text=str(form.cleaned_data))
+        send_msg(text=f'{self.request.user.email} ordered account with ID {form.cleaned_data["account_id"]}')
         send_mail(f'Dear {self.request.user.username}, Account ID ' + form.cleaned_data["account_id"],
                   f'Your order with ID - {form.cleaned_data["account_id"]} is preparing', 'samoilenkoa7@ukr.net',
                   [self.request.user.email], fail_silently=False)

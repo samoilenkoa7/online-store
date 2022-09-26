@@ -50,7 +50,7 @@ class UserAccountView(LoginRequiredMixin, ListView):
     login_url = 'accountlogin/'
 
     def get_queryset(self):
-        return UserOrder.objects.filter(user=self.request.user)
+        return UserOrder.objects.filter(user=self.request.user).select_related('user')
 
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
