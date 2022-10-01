@@ -3,7 +3,7 @@ from django.db.models import F
 from django.views.generic import DetailView, CreateView
 from django.core.paginator import Paginator
 from django.contrib.auth.models import User
-from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin
 from django.core.mail import send_mail
 from django.contrib import messages
 
@@ -88,7 +88,7 @@ class AccountOrder(CreateView):
         return redirect('success')
 
 
-class CreateAccount(LoginRequiredMixin, CreateView):
+class CreateAccount(PermissionRequiredMixin, CreateView):
     form_class = CreateAccount
     template_name = 'shop/add-account.html'
     login_url = '/admin/'
