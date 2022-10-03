@@ -5,7 +5,12 @@
 <section class="py-5">
     <div class="container px-4 px-lg-5 my-5 bg-white">
         <div class="row gx-4 gx-lg-5 align-items-center">
-            <h1>Welcome dear {{ user_name }}</h1>
+            {% if user_profile.avatar %}
+            <div class="avatar">
+                <img src="{{ user_profile.avatar.url }}" alt="" class="img-thumbnail">
+            </div>
+            {% endif %}
+            <h1>Welcome dear {{ user_name }} | <a href="{% url 'change' %}"> Change Avatar</a></h1>
             <strong><h2>Here is the list of your orders</h2></strong>
             <ol class="list-group list-group-numbered mb-3 mt-3">
                 {% for order in userorder %}
@@ -19,6 +24,23 @@
                 {% endfor %}
             </ol>
         </div>
+        {% if form %}
+        <div class="container">
+            <div class="row justify-content-center align-items-center">
+                <div class="col-6 mb-3">
+                    <h2>Change avatar</h2>
+                    <form action="{% url 'change' %}" method="post" enctype="multipart/form-data" class="form-control">
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <button type="submit" class="btn btn-primary btn-sm">
+                            Change avatar
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% endif %}
     </div>
+
 </section>
 {% endblock %}

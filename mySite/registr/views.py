@@ -4,6 +4,8 @@ from django.contrib import messages
 from django.views.generic import ListView
 from django.apps import apps
 from django.contrib.auth.mixins import LoginRequiredMixin
+from .forms import UserView
+from .models import UserProfile
 
 
 from .forms import UserRegisterForm, UserLoginForm
@@ -55,4 +57,22 @@ class UserAccountView(LoginRequiredMixin, ListView):
     def get_context_data(self, *, object_list=None, **kwargs):
         context = super().get_context_data(**kwargs)
         context['user_name'] = self.request.user.username
-        return context
+        try:
+            context['user_profile'] =  UserProfile.objects.get(user=self.request.user)
+        finally:
+            return context
+
+def change_avatar(request):
+    try:
+        user_profile = UserProfile.objects.get(user=request.user)
+    except:
+        user_profile = UserProfile.objects.create(user=request.user)
+    if request.method == 'POST':
+        form = UserView(request.POST, request.FILES)
+        if form.is_valid():
+            user_profile.avatar = form.cleaned_data['avatar']
+            user_profile.save()
+            return redirect('account')
+    else:
+        form = UserView()
+    return render(request, 'registr/account.html', context={'form': form, 'user_profile': user_profile})
