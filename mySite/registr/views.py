@@ -1,14 +1,13 @@
-from django.shortcuts import render, redirect
-from django.contrib.auth import login, logout
 from django.contrib import messages
-from django.views.generic import ListView
+from django.shortcuts import render, redirect
 from django.apps import apps
+from django.contrib.auth import login, logout
+from django.views.generic import ListView
 from django.contrib.auth.mixins import LoginRequiredMixin
-from .forms import UserView
+
+from .forms import UserView, UserRegisterForm, UserLoginForm
 from .models import UserProfile
 
-
-from .forms import UserRegisterForm, UserLoginForm
 
 UserOrder = apps.get_model('shop', 'UserOrder')
 
