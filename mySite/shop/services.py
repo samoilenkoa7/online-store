@@ -19,3 +19,7 @@ def pagination_for_shop_items(model: object, amount_per_page: int, request: dict
     page_number = request.GET.get('page', 1)
     page_obj = paginator.get_page(page_number)
     return page_obj
+
+
+def sorting_items_by_platform(form):
+    return Account.objects.order_by(form.cleaned_data['sort_form']).select_related('platform')

@@ -13,7 +13,7 @@ from .services import send_bil_to_user_and_send_notif_to_tg, pagination_for_shop
 def shop(request):
     sorting = SortForm(request.POST)
     if sorting.is_valid():
-        file = sorting_items_by_platform(sorting=sorting)
+        file = sorting_items_by_platform(form=sorting)
     else:
         file = Account.objects.all().select_related('platform')
     data = {
