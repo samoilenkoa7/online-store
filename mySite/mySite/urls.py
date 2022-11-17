@@ -26,6 +26,9 @@ urlpatterns = [
     path('', include('pages.urls')),
     path('shop', include('shop.urls')),
     path('account', include('registr.urls')),
+    path('api/v1/', include('api.urls')),
+    path(r'api/v1/auth/', include('djoser.urls')),
+    path(r'api/v1/auth/', include('djoser.urls.authtoken')),
 ]
 
 if settings.DEBUG:
